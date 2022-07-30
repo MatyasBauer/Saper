@@ -1,11 +1,33 @@
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 
-export const Legend: FC = () => (
+export interface LegendProps {
+  /**
+   * Feature to be activated after first+second action
+   */
+  feature: string;
+  /**
+   * First action
+   */
+  firstAction: string;
+  /**
+   * Second action
+   */
+  secondAction: string;
+}
+
+export const Legend: FC<LegendProps> = ({
+  feature,
+
+  firstAction,
+
+  secondAction,
+}) => (
   <Parent>
-    <strong>flag: </strong>
+    <strong>{feature}: </strong>
     <FlagComboParent>
-      <Key>ctrl</Key> + <Click>click</Click>
+      <FirstAction>{firstAction}</FirstAction> +{" "}
+      <SecondAction>{secondAction}</SecondAction>
     </FlagComboParent>
   </Parent>
 );
@@ -19,10 +41,10 @@ export const Parent = styled.legend`
   margin: 0 auto 2vw;
   line-height: 1.25em;
 `;
-const Key = styled.span`
+const FirstAction = styled.span`
   color: red;
 `;
 
-const Click = styled.span`
+const SecondAction = styled.span`
   color: blue;
 `;
